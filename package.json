@@ -4,7 +4,7 @@
   "description": "A simple backend assignment given by roxiler.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "node server.js",
     "start": "node server.js"
   },
   "author": "Pankaj",
