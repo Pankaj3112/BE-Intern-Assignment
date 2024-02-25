@@ -1,11 +1,13 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const { filterByMonth } = require("../utils");
 
-module.exports.getTransactions = async (req, res) => {
+const getTransactions = async (req, res) => {
   const { month, search, page = 1, perPage = 10 } = req.query;
   let whereCondition = {};
 
   try {
+	//filter by search
     if (search) {
       whereCondition = {
         OR: [
@@ -18,18 +20,26 @@ module.exports.getTransactions = async (req, res) => {
 
     let transactions = await prisma.product.findMany({
       where: whereCondition,
-      skip: (page - 1) * perPage,
-      take: perPage,
     });
 
-	transactions = transactions.filter((transaction) => {
-	  const transactionDate = new Date(transaction.dateOfSale);
-	  const transactionMonth = transactionDate.getMonth()+1;
-	  return month === transactionMonth;
-	})
+	//filter by month
+    transactions = filterByMonth(transactions, month);
 
-    return res.json({ success: true, transactions });
+	//pagination
+	transactions = transactions.slice(
+	  (page - 1) * perPage,
+	  page * perPage
+	);
+
+	if(transactions.length === 0 && page > 1) {
+	  return { success: false, error: "No more transactions to show"};
+	}
+	
+    return { success: true, transactions };
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+	console.log(error);
+    return { success: false, error: "Internal Server Error"};
   }
 };
+
+module.exports = { getTransactions };

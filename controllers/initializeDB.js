@@ -3,7 +3,8 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 require("dotenv").config();
 
-module.exports.initialize = async (req, res) => {
+
+const initialize = async (req, res) => {
   try {
     const response = await axios.get(process.env.THIRD_PARTY_API_URL);
     const products = response.data;
@@ -40,3 +41,5 @@ module.exports.initialize = async (req, res) => {
       .json({ success: false, message: "Error initializing database" });
   }
 };
+
+module.exports = { initialize };
