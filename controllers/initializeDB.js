@@ -1,0 +1,1 @@
+module.exports.initialize = async (req, res) => {};
