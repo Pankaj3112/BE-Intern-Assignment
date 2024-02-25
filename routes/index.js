@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = Router();
+const { checkMonth } = require("../middlewares");
 const { initialize } = require("../controllers/initializeDB");
 const { getTransactions } = require("../controllers/transactions");
 const { getStatistics } = require("../controllers/statistics");
@@ -11,6 +12,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/initialize-db", initialize);
+
+//middleware to check if month parameter is present
+router.use(checkMonth);
+
 router.get("/transactions", getTransactions);
 router.get("/statistics", getStatistics);
 router.get("/chart/bar", getBarChart);

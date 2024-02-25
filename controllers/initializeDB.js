@@ -22,7 +22,12 @@ module.exports.initialize = async (req, res) => {
     }
 
     await prisma.product.createMany({
-      data: newProducts,
+      data: newProducts.map((product) => {
+		return {
+			...product,
+			priceText: String(product.price),
+		}
+	  }),
     });
 
     return res

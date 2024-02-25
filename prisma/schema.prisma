@@ -12,6 +12,7 @@ model Product {
   id				Int		@id
   title				String
   price				Float
+  priceText			String
   description		String
   category			String
   image				String
