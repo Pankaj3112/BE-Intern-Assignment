@@ -3,6 +3,13 @@
 - Node.js and npm installed
 - Postgres database installed and running
 
+## Tech Stack
+
+- Node.js
+- Express.js
+- Prisma ORM
+- Postgres database
+
 ## Getting Started
 
 1. **Fill the .env file:**
