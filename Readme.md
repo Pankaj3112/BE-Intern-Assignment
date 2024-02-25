@@ -7,7 +7,7 @@
 
 1. **Fill the .env file:**
 
-   - Add postgres database url in the DATABASE_URL variable
+   - You can optionally add your postgres database url in the DATABASE_URL variable
    - You can optionally set the Port
 
 2. **Install dependencies:**
@@ -21,6 +21,8 @@
    ```bash
    npm run prisma
    ```
+
+   - optional if db is already seeded
 
 4. **Run the App:**
    ```bash
@@ -76,6 +78,7 @@
 
   - Get bar chart data for a specific month
   - Sample response:
+
   ```json
   {
     "success": true,
@@ -93,16 +96,17 @@
 
   - Get pie chart data for a specific month
   - Sample response:
+
   ```json
   {
-	"success": true,
-	"pieChartData": [
-	  {
-		"category": "Men's Clothing",
-		"count": 2
-	  },
-	  "..."
-	]
+    "success": true,
+    "pieChartData": [
+      {
+        "category": "Men's Clothing",
+        "count": 2
+      },
+      "..."
+    ]
   }
   ```
 
