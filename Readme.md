@@ -43,7 +43,7 @@
   }
   ```
 
-- **GET /transactions?month=january&search=abc&page=1&limit=10**
+- **GET /transactions?month=january&search=a&page=1&limit=10**
 
   - Get all transactions for a specific month
   - Optional query parameters: search, page, limit
